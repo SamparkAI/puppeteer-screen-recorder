@@ -92,7 +92,10 @@ export default class PageVideoStreamWriter extends EventEmitter {
 
   private configureFFmPegPath(): void {
     const ffmpegPath = this.getFfmpegPath();
-
+    if (!ffmpegPath) {
+      setFfmpegPath("/usr/bin/ffmpeg");
+      return
+    }
     if (!ffmpegPath) {
       throw new Error(
         'FFmpeg path is missing, \n Set the FFMPEG_PATH env variable'
@@ -250,9 +253,9 @@ export default class PageVideoStreamWriter extends EventEmitter {
 
   private trimFrame(fameList: pageScreenFrame[], chunckEndTime: number): pageScreenFrame[] {
     return fameList.map((currentFrame: pageScreenFrame, index: number) => {
-      const endTime = (index !== fameList.length-1) ? fameList[index+1].timestamp : chunckEndTime;
-      const duration = endTime - currentFrame.timestamp; 
-        
+      const endTime = (index !== fameList.length - 1) ? fameList[index + 1].timestamp : chunckEndTime;
+      const duration = endTime - currentFrame.timestamp;
+
       return {
         ...currentFrame,
         duration,
