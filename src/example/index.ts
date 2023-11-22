@@ -1,15 +1,16 @@
 import fs from 'fs';
 import { PassThrough } from 'stream';
 
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 import { PuppeteerScreenRecorder } from '../lib/PuppeteerScreenRecorder';
 
 /** @ignore */
 async function testStartMethod(format: string, isStream: boolean) {
   const browser = await puppeteer.launch({
-    executablePath: process.env['PUPPETEER_EXECUTABLE_PATH'],
+    executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     headless: false,
+    defaultViewport: null,
   });
   const page = await browser.newPage();
   const recorder = new PuppeteerScreenRecorder(page);
@@ -23,7 +24,7 @@ async function testStartMethod(format: string, isStream: boolean) {
     await recorder.start(format);
   }
   await page.goto('https://developer.mozilla.org/en-US/docs/Web/CSS/animation');
-  await page.waitFor(10 * 1000);
+  await new Promise(resolve => setTimeout(resolve, 10 * 1000));
   await recorder.stop();
   await browser.close();
 }

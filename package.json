@@ -1,13 +1,10 @@
 {
-  "name": "puppeteer-screen-recorder",
+  "name": "@samparkai/puppeteer-screen-recorder",
   "version": "2.1.2",
   "description": "A puppeteer Plugin that uses the native chrome devtool protocol for capturing video frame by frame. Also supports an option to follow pages that are opened by the current page object",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "workspaces": [
-    "https://opencollective.com/puppeteer-screen-recorder"
-  ],
   "repository": "https://github.com/prasanaworld/puppeteer-screen-recorder",
   "author": {
     "name": "Prasana Kannan",
@@ -49,7 +46,7 @@
     "example": "ts-node src/example/index.ts",
     "example:stream": "npm run example -- stream",
     "example:debug": "npm run example -- --inspect",
-    "build": "run-p build:*",
+    "build": "pnpm run build:main && pnpm run build:module",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
     "fix": "run-s fix:*",
@@ -82,17 +79,13 @@
     "node": ">=10"
   },
   "dependencies": {
-    "fluent-ffmpeg": "^2.1.2"
+    "fluent-ffmpeg": "^2.1.2",
+    "puppeteer-core": "^21.5.2"
   },
   "optionalDependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0"
   },
-  "peerDependencies": {
-    "puppeteer": ">=5.5.0"
-  },
   "devDependencies": {
-    "@types/puppeteer": "^7.0.4",
-    "@types/puppeteer-core": "^7.0.4",
     "@ava/typescript": "^1.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/node": "^14.14.13",
@@ -112,7 +105,6 @@
     "nyc": "^15.1.0",
     "open-cli": "^6.0.1",
     "prettier": "^2.1.1",
-    "puppeteer": "^6.0.0",
     "standard-version": "^9.0.0",
     "ts-node": "^9.0.0",
     "typedoc": "^0.19.0",

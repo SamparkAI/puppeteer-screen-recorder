@@ -164,7 +164,7 @@ await recorder.stop();
 ### Example
 
 ```javascript
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const { PuppeteerScreenRecorder } = require('puppeteer-screen-recorder');
 
 (async () => {

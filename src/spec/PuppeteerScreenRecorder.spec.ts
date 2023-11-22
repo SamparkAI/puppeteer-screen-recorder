@@ -2,7 +2,7 @@ import fs from 'fs';
 import { dirname } from 'path';
 
 import test from 'ava';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 import { PuppeteerScreenRecorder, PuppeteerScreenRecorderOptions } from '../';
 
